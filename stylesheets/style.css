@@ -1,0 +1,47 @@
+/* RESET */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+  
+body, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+/* TYPOGRAPHY  */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+/* LAYOUT */
+#wrapper {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* COMPONENTS */
+
+
+    /* Game-area */
+    #display-area {
+        border: 5px solid black;
+        height: 610px;
+        width: 1010px;
+
+        margin: 0 auto;
+    }
+
+    .display-container {
+        text-align: center;
+    }
+
+    
+
+/* PAGES */
