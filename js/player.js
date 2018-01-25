@@ -13,8 +13,8 @@ function Player (ctx, width, height) {
     self.gameHeight = height;
     
     //Place the player
-    self.x = 0;
-    self.y = 400;
+    self.x = 150;
+    self.y = 450;
     
     //Leave DIRECTION for now, only needed in the case of user indepenedent movement or WRAP
     self.moveAction = null;

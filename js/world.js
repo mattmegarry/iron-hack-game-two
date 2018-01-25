@@ -27,12 +27,14 @@ World.prototype.init = function() {
     self._createStars();
     self.player = new Player(self.ctx, self.width, self.height);    
     self.player.collision = false;
+    self.player.winCollision = false;
 }
 
 World.prototype.update = function () {
     var self = this;
 
     self._blockCollision();//Could set a range of collision variables true or false
+    self._waypointCollision();
 
     self.blocks.forEach(function(block) {
         block.update();
@@ -81,7 +83,7 @@ World.prototype._blockCollision = function () {
 
         var playerRightOverlap = self.player.rightSideLine > blockLeftSideLine;
         
-        if (playerRightOverlap //TODO - make it all like this: could test performance of both in Chrome!
+        if (playerRightOverlap //TODO - make it all like this: could test performance of both in Chrome
             && self.player.leftSideLine < blockLeftSideLine
             && self.player.topSideLine < blockBottomSideLine
             && self.player.bottomSideLine > blockTopSideLine) {
@@ -114,6 +116,50 @@ World.prototype._blockCollision = function () {
     
 }
 
+World.prototype._waypointCollision = function () {
+    var self = this;
+
+    self.waypoints.forEach(function (blockItem) {
+        var blockRightSideLine = blockItem.x + blockItem.width; 
+        var blockLeftSideLine = blockItem.x;
+        var blockTopSideLine = blockItem.y;
+        var blockBottomSideLine = blockItem.y + blockItem.height;
+
+        var playerRightOverlap = self.player.rightSideLine > blockLeftSideLine;
+        
+        if (playerRightOverlap //TODO - make it all like this: could test performance of both in Chrome
+            && self.player.leftSideLine < blockLeftSideLine
+            && self.player.topSideLine < blockBottomSideLine
+            && self.player.bottomSideLine > blockTopSideLine) {
+            //console.log('RIGHT');
+            self.player.winCollision = true;
+        } 
+        if (self.player.leftSideLine < blockRightSideLine
+            && self.player.rightSideLine > blockRightSideLine
+            && self.player.topSideLine < blockBottomSideLine
+            && self.player.bottomSideLine > blockTopSideLine) {
+            //console.log('LEFT');
+            self.player.winCollision = true;
+        }
+        if (self.player.rightSideLine > blockLeftSideLine
+            && self.player.leftSideLine < blockRightSideLine
+            && self.player.topSideLine < blockBottomSideLine
+            && self.player.bottomSideLine > blockBottomSideLine) {
+            //console.log('TOP');
+            self.player.winCollision = true;
+        }
+        if (self.player.rightSideLine > blockLeftSideLine
+            && self.player.leftSideLine < blockRightSideLine
+            && self.player.topSideLine < blockTopSideLine
+            && self.player.bottomSideLine > blockTopSideLine) {
+            //console.log('BOTTOM');
+            self.player.winCollision = true;
+        } 
+
+    });
+
+}
+
 
 World.prototype._createBlocks = function () {
     var self = this;
@@ -134,13 +180,6 @@ World.prototype._createBlocks = function () {
         self.blocks.push(randomBlock);
     }
 
-
-    //Boundary Blocks
-   // var fullFloorBlock = new Block(0, 595, 1000, 10, self.ctx, 'solid', 'green');
-   // self.blocks.push(fullFloorBlock);
-
-    // self.ctx.fillStyle = self.blockColor;
-    // self.ctx.fillRect(0, 590, 1000, 10);
 }
 
 World.prototype._createWaypoints = function () {
@@ -160,27 +199,9 @@ World.prototype._createWaypoints = function () {
     var line4 = 370;
     var line5 = 470;
 
-    //Line One - startX, startY, 10, 10, self.ctx, 'solid', randColor
+    // startX, startY, 10, 10, self.ctx, 'solid', randColor
     var winWaypoint = new Waypoint(800, 100, 50, 50, self.ctx, 'waypoint', 'yellow');
     self.waypoints.push(winWaypoint);
-
-    //Line Two
-    /* var newBlock50Percent = new Waypoint('Twwooooooo', 140, line2 + yAdjust, self.ctx, 'waypoint', lightBlue);
-    self.waypoints.push(newBlock50Percent);
-
-    //Line Three
-    var fullFloorBlock = new Waypoint('Three', 140, line3 + yAdjust, self.ctx, 'waypoint', magenta);
-    self.waypoints.push(fullFloorBlock);
-
-    //Line Four
-    var rightBoundaryBlock = new Waypoint('4', 60, line4 + yAdjust, self.ctx, 'waypoint', 'pink');
-    self.waypoints.push(rightBoundaryBlock);
-
-    //Line Five
-    var rightBoundaryBlock = new Waypoint('Fiiiiveeeeeee', 60, line5 + yAdjust, self.ctx, 'waypoint', 'pink');
-    self.waypoints.push(rightBoundaryBlock); */
-    // self.ctx.fillStyle = self.portalColor;
-    // self.ctx.fillRect(0, 400, 26, 26);
 }
 
 World.prototype._createStars = function () {
@@ -200,12 +221,4 @@ World.prototype._createStars = function () {
         randomStar = new Star(startX, startY, 1, 1, self.ctx, 'solid', 'white');
         self.stars.push(randomStar);
     }
-
-
-    //Boundary Blocks
-   // var fullFloorBlock = new Block(0, 595, 1000, 10, self.ctx, 'solid', 'green');
-   // self.blocks.push(fullFloorBlock);
-
-    // self.ctx.fillStyle = self.blockColor;
-    // self.ctx.fillRect(0, 590, 1000, 10);
 }

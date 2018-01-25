@@ -103,12 +103,18 @@ Game.prototype._frameRefresh = function() {
     self.world.update();//*** 
     //WORLD UPDATES**
     //self.world.update();
-    self.i++;
+    //self.i++;
         
     //END GAME
-    if (self.i > 3000) {
-        self.finished = true;
-        self.gameOverCallback();
+    if (self.world.player.x < -5 
+        || self.world.player.x > 1005 
+        || self.world.player.y < -5 
+        || self.world.player.y > 605) {
+            self.finished = true;
+            self.gameOverCallback();
+    } else if (self.world.player.winCollision === true) {
+            self.finished = true;
+            self.gameOverCallback();
     }
 
     //DRAWING**
