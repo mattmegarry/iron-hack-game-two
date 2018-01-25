@@ -31,6 +31,10 @@ World.prototype.update = function () {
 
     self._blockCollision();//Could set a range of collision variables true or false
 
+    self.blocks.forEach(function(block) {
+        block.update();
+    }); 
+    
     self.player.update();
 }
 
@@ -104,24 +108,25 @@ World.prototype._createBlocks = function () {
     var self = this;
 
     //posit_X, posit_Y, width, height, ctx, type
-    var newTopLineSolid = new Block(60, 100, 600, 10, self.ctx, 'solid', 'black');
-    self.blocks.push(newTopLineSolid);
+    var randomBlock;
+    var blockNum = 20;
+    var startX;
+    var startY;
+    var randColor;
 
-    var newBlock50Percent = new Block(140, 200, 600, 10, self.ctx, 'solid', 'black');
-    self.blocks.push(newBlock50Percent);
+    for (var i = 0; i < blockNum; i++) {
+        startX = Math.random() * (980 - 20) + 20;
+        startY = Math.random() * (580 - 10) + 10;
+        randColor = '#' + Math.floor(Math.random()*16777215).toString(16);
 
-    var fullFloorBlock = new Block(140, 300, 700, 10, self.ctx, 'solid', 'black');
-    self.blocks.push(fullFloorBlock);
+        randomBlock = new Block(startX, startY, 10, 10, self.ctx, 'solid', randColor);
+        self.blocks.push(randomBlock);
+    }
 
-    var rightBoundaryBlock = new Block(60, 400, 50, 10, self.ctx, 'solid', 'black');
-    self.blocks.push(rightBoundaryBlock);
-
-    var rightBoundaryBlock = new Block(60, 500, 600, 10, self.ctx, 'solid', 'black');
-    self.blocks.push(rightBoundaryBlock);
 
     //Boundary Blocks
-    var fullFloorBlock = new Block(0, 595, 1000, 10, self.ctx, 'solid', 'green');
-    self.blocks.push(fullFloorBlock);
+   // var fullFloorBlock = new Block(0, 595, 1000, 10, self.ctx, 'solid', 'green');
+   // self.blocks.push(fullFloorBlock);
 
     // self.ctx.fillStyle = self.blockColor;
     // self.ctx.fillRect(0, 590, 1000, 10);
@@ -144,12 +149,12 @@ World.prototype._createWaypoints = function () {
     var line4 = 370;
     var line5 = 470;
 
-    //Line One
-    var newBlock10Percent = new Waypoint('function', 60, line1 + yAdjust, self.ctx, 'waypoint', darkBlue);
-    self.waypoints.push(newBlock10Percent);
+    //Line One - startX, startY, 10, 10, self.ctx, 'solid', randColor
+    var winWaypoint = new Waypoint(800, 100, 50, 50, self.ctx, 'waypoint', yellow);
+    self.waypoints.push(winWaypoint);
 
     //Line Two
-    var newBlock50Percent = new Waypoint('Twwooooooo', 140, line2 + yAdjust, self.ctx, 'waypoint', lightBlue);
+    /* var newBlock50Percent = new Waypoint('Twwooooooo', 140, line2 + yAdjust, self.ctx, 'waypoint', lightBlue);
     self.waypoints.push(newBlock50Percent);
 
     //Line Three
@@ -162,7 +167,7 @@ World.prototype._createWaypoints = function () {
 
     //Line Five
     var rightBoundaryBlock = new Waypoint('Fiiiiveeeeeee', 60, line5 + yAdjust, self.ctx, 'waypoint', 'pink');
-    self.waypoints.push(rightBoundaryBlock);
+    self.waypoints.push(rightBoundaryBlock); */
     // self.ctx.fillStyle = self.portalColor;
     // self.ctx.fillRect(0, 400, 26, 26);
 }

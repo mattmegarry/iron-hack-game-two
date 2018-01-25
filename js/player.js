@@ -21,6 +21,7 @@ function Player (ctx, width, height) {
 
     self.collisionRight = false;
     self.collisionLeft = false;
+    self.bounce = 30;
 }
 
 Player.prototype.move = function (moveAction) { // I set things in motion!
@@ -37,8 +38,14 @@ Player.prototype.update = function () { // I do things EVERY FRAME!
     if (self.moveAction === 'right' && self.rightCollision === false) {
         self.x += 10;
     } 
+    else if (self.rightCollision === true){
+        self.x -= self.bounce;
+    }
     else if (self.moveAction === 'left' && self.leftCollision === false) {
         self.x -= 10;
+    }
+    else if (self.leftCollision === true){
+        self.x += self.bounce;
     }
     else if (self.moveAction === 'stopright') {
         self.x = self.x;
@@ -49,10 +56,16 @@ Player.prototype.update = function () { // I do things EVERY FRAME!
     //FAKE UP AND DOWN
     if (self.moveAction === 'up' && self.topCollision === false) {
         self.y -= 10;
+    }
+    else if (self.topCollision === true){
+        self.y += self.bounce;
     } 
     else if (self.moveAction === 'down' && self.bottomCollision === false) {
         self.y += 10;
     }
+    else if (self.bottomCollision === true){
+        self.y -= self.bounce;
+    } 
     else if (self.moveAction === 'stopup') {
         self.y = self.y;
     }
