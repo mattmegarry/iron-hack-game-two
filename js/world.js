@@ -166,7 +166,7 @@ World.prototype._createBlocks = function () {
 
     //posit_X, posit_Y, width, height, ctx, type
     var randomBlock;
-    var blockNum = 60;
+    var blockNum = 70;
     var startX;
     var startY;
     var randColor;
@@ -183,7 +183,7 @@ World.prototype._createBlocks = function () {
 }
 
 World.prototype._createWaypoints = function () {
-    var self = this; // change for create portals
+    var self = this;
     var darkBlue = '#5594cc';
     var yellow = '#efefa7';
     var lightBlue = '#1bcef7';

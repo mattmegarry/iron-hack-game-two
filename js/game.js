@@ -101,9 +101,6 @@ Game.prototype._frameRefresh = function() {
     //------LOGIC------
     //PLAYER UPDATES
     self.world.update();//*** 
-    //WORLD UPDATES**
-    //self.world.update();
-    //self.i++;
         
     //END GAME
     if (self.world.player.x < -5 
@@ -128,7 +125,6 @@ Game.prototype._frameRefresh = function() {
     //CONTINUE REFRESHING
     if (!self.finished) {
         window.requestAnimationFrame(self._frameRefresh.bind(self));
-        //console.log('Mooo');
     }
 }
 

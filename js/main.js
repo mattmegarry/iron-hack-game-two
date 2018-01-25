@@ -25,7 +25,7 @@ function main () {
 
     var gameToGameOverBridge = function (){
         destroyGame();
-        buildGameOver();    
+        buildGameOver(game.world.player.winCollision);    
     };
 
     var gameOverToAniBridge = function () {
@@ -105,13 +105,25 @@ function main () {
 
     var gameOverContent;
     var playAgainButton;
+    var playResult;
 
-    function buildGameOver () {
+    function buildGameOver (win) {
         //SET DISPLAY STAGE
         displayStage = 'gameover';
         //THE CONTENT
         gameOverContent = document.createElement('div');
         gameOverContent.setAttribute('class', 'display-container');
+        
+        playResult = document.createElement('span');
+        playResult.setAttribute('id', 'play-again-button');
+        if (win === true) {
+            playResult.innerText = 'YOU WON!';    
+        } 
+        else if (win === false) {
+            playResult.innerText = 'YOU LOST! Don\'t let the asteroids push you out of the Galaxy!';   
+        }
+        gameOverContent.appendChild(playResult);
+        
         playAgainButton = document.createElement('button');
         playAgainButton.setAttribute('id', 'play-again-button');
         playAgainButton.innerText = 'PLAY AGAIN';
@@ -119,8 +131,7 @@ function main () {
         //CONTENT INTO DOM
         gameAreaDiv.appendChild(gameOverContent);
         //BIND START BUTTON
-        playAgainButton.addEventListener('click', gameOverToAniBridge)
-
+        playAgainButton.addEventListener('click', gameOverToAniBridge)      
     }
 
     function destroyGameOver () {
