@@ -21,7 +21,7 @@ function Player (ctx, width, height) {
 
     self.collisionRight = false;
     self.collisionLeft = false;
-    self.bounce = 30;
+    self.bounce = 20;
 }
 
 Player.prototype.move = function (moveAction) { // I set things in motion!

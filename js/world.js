@@ -166,7 +166,7 @@ World.prototype._createBlocks = function () {
 
     //posit_X, posit_Y, width, height, ctx, type
     var randomBlock;
-    var blockNum = 20;
+    var blockNum = 60;
     var startX;
     var startY;
     var randColor;
