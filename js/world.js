@@ -10,6 +10,7 @@ function World (ctx, width, height) {
 
     self.blocks = [];
     self.waypoints = [];
+    self.stars = [];
 
     //Take in canvas rendering context from Game instance**
     self.ctx = ctx;
@@ -20,8 +21,10 @@ function World (ctx, width, height) {
 World.prototype.init = function() {
     var self = this;
 
+    
     self._createBlocks();
     self._createWaypoints();
+    self._createStars();
     self.player = new Player(self.ctx, self.width, self.height);    
     self.player.collision = false;
 }
@@ -33,6 +36,10 @@ World.prototype.update = function () {
 
     self.blocks.forEach(function(block) {
         block.update();
+    });
+
+    self.stars.forEach(function(star) {
+        star.update();
     }); 
     
     self.player.update();
@@ -43,6 +50,10 @@ World.prototype.draw = function () {
     
     self.waypoints.forEach(function(waypoint) {
         waypoint.draw();
+    });
+
+    self.stars.forEach(function(star) {
+        star.draw();
     });
 
     self.player.draw();
@@ -119,7 +130,7 @@ World.prototype._createBlocks = function () {
         startY = Math.random() * (580 - 10) + 10;
         randColor = '#' + Math.floor(Math.random()*16777215).toString(16);
 
-        randomBlock = new Block(startX, startY, 10, 10, self.ctx, 'solid', randColor);
+        randomBlock = new Block(startX, startY, 10, 10, self.ctx, 'solid', 'white');
         self.blocks.push(randomBlock);
     }
 
@@ -133,7 +144,7 @@ World.prototype._createBlocks = function () {
 }
 
 World.prototype._createWaypoints = function () {
-    var self = this // change for create portals
+    var self = this; // change for create portals
     var darkBlue = '#5594cc';
     var yellow = '#efefa7';
     var lightBlue = '#1bcef7';
@@ -150,7 +161,7 @@ World.prototype._createWaypoints = function () {
     var line5 = 470;
 
     //Line One - startX, startY, 10, 10, self.ctx, 'solid', randColor
-    var winWaypoint = new Waypoint(800, 100, 50, 50, self.ctx, 'waypoint', yellow);
+    var winWaypoint = new Waypoint(800, 100, 50, 50, self.ctx, 'waypoint', 'yellow');
     self.waypoints.push(winWaypoint);
 
     //Line Two
@@ -170,4 +181,31 @@ World.prototype._createWaypoints = function () {
     self.waypoints.push(rightBoundaryBlock); */
     // self.ctx.fillStyle = self.portalColor;
     // self.ctx.fillRect(0, 400, 26, 26);
+}
+
+World.prototype._createStars = function () {
+    var self = this;
+
+    //posit_X, posit_Y, width, height, ctx, type
+    var randomStar;
+    var blockNum = 1000;
+    var startX;
+    var startY;
+    var randColor;
+
+    for (var i = 0; i < blockNum; i++) {
+        startX = Math.random() * (980 - 20) + 20;
+        startY = Math.random() * (580 - 10) + 10;
+
+        randomStar = new Star(startX, startY, 1, 1, self.ctx, 'solid', 'white');
+        self.stars.push(randomStar);
+    }
+
+
+    //Boundary Blocks
+   // var fullFloorBlock = new Block(0, 595, 1000, 10, self.ctx, 'solid', 'green');
+   // self.blocks.push(fullFloorBlock);
+
+    // self.ctx.fillStyle = self.blockColor;
+    // self.ctx.fillRect(0, 590, 1000, 10);
 }

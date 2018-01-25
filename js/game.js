@@ -113,7 +113,7 @@ Game.prototype._frameRefresh = function() {
 
     //DRAWING**
     self.ctx.clearRect(0, 0, 1000, 600);
-    self.ctx.fillStyle = '#3c3d36';
+    self.ctx.fillStyle = 'black';
     self.ctx.fillRect(0, 0, 1000, 600);
     //The other stuff - must go after!!
     self.world.draw();
