@@ -27,7 +27,6 @@ Star.prototype.draw = function () {
 
 Star.prototype.update = function () {
     var self = this;
-    //logic for update self.x and self.y - i.e if a block were to mooooove!
 
     if (self.sequence >= 0 && self.sequence <= 25) {
         self.x -= 5;

@@ -36,31 +36,11 @@ Waypoint.prototype.draw = function () {
                     self.grow = true;
                 }
         }
-     /*        self.j += 10;
-                if (self.j > 10000) {
-                    self.grow = false;
-                }
-        }
-        if (self.grow === false) {
-            self.ctx.fillStyle = self.color;
-            self.ctx.fillRect(self.x, self.y, self.width - self.i, self.height - self.i);
-            self.j -= 10;
-                if (self.j < 1) {
-                    self.grow = true;
-                }
-        }
-         */
-        
-        
-        
-        
-        
-        //self.ctx.font = '32px Droid Sans Mono, monospace, monospace, Droid Sans Fallback';
-        //self.ctx.fillText(self.text, self.x, self.y);
     
 }
 
 Waypoint.prototype.update = function () {
     var self = this;
-    //logic for update self.x and self.y - i.e if a block were to mooooove!
+
+    //@TODO - Update waypoint size as it grows on the screen.
 }

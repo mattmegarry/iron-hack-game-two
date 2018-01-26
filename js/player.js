@@ -1,27 +1,20 @@
 'use strict';
 
 function Player (ctx, width, height) {
-    var self = this; //SELF NOW REFERS TO THE INSTANCE OF PLAYER
+    var self = this;
 
-    self.size = 26; //Set player size to x pixels (to allow for collision detection)
-
-    //Take in canvas rendering context from Game instance
-    self.ctx = ctx;
-    
-    //Take in dimensions of our canvas from Game instance 
+    self.size = 26;
+    self.ctx = ctx;    
     self.gameWidth = width;
-    self.gameHeight = height;
-    
-    //Place the player
+    self.gameHeight = height;    
     self.x = 150;
     self.y = 450;
-    
-    //Leave DIRECTION for now, only needed in the case of user indepenedent movement or WRAP
     self.moveAction = null;
-
     self.collisionRight = false;
     self.collisionLeft = false;
     self.bounce = 20;
+
+    //@TODO - possibly do player._init (although player doesn't instanciate other objects...)
 }
 
 Player.prototype.move = function (moveAction) { // I set things in motion!
@@ -33,8 +26,8 @@ Player.prototype.move = function (moveAction) { // I set things in motion!
 Player.prototype.update = function () { // I do things EVERY FRAME!
     var self = this;
 
-    //USE SWITCH - and for each other object woth collisions
-    //User responsive lateral movement EVERY FRAME
+    //@TO DO - USE SWITCH - and for each other object with collisions
+    //LATERAL
     if (self.moveAction === 'right' && self.rightCollision === false) {
         self.x += 10;
     } 
@@ -53,7 +46,7 @@ Player.prototype.update = function () { // I do things EVERY FRAME!
     else if (self.moveAction === 'stopleft') {
         self.x = self.x;
     }
-    //FAKE UP AND DOWN
+    //UP AND DOWN
     if (self.moveAction === 'up' && self.topCollision === false) {
         self.y -= 10;
     }

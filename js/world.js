@@ -124,35 +124,33 @@ World.prototype._waypointCollision = function () {
         var blockLeftSideLine = blockItem.x;
         var blockTopSideLine = blockItem.y;
         var blockBottomSideLine = blockItem.y + blockItem.height;
-
-        var playerRightOverlap = self.player.rightSideLine > blockLeftSideLine;
         
-        if (playerRightOverlap //TODO - make it all like this: could test performance of both in Chrome
+        if (self.player.rightSideLine > blockLeftSideLine //@TODO - Place in variables 
             && self.player.leftSideLine < blockLeftSideLine
             && self.player.topSideLine < blockBottomSideLine
             && self.player.bottomSideLine > blockTopSideLine) {
-            //console.log('RIGHT');
+            
             self.player.winCollision = true;
         } 
         if (self.player.leftSideLine < blockRightSideLine
             && self.player.rightSideLine > blockRightSideLine
             && self.player.topSideLine < blockBottomSideLine
             && self.player.bottomSideLine > blockTopSideLine) {
-            //console.log('LEFT');
+            
             self.player.winCollision = true;
         }
         if (self.player.rightSideLine > blockLeftSideLine
             && self.player.leftSideLine < blockRightSideLine
             && self.player.topSideLine < blockBottomSideLine
             && self.player.bottomSideLine > blockBottomSideLine) {
-            //console.log('TOP');
+            
             self.player.winCollision = true;
         }
         if (self.player.rightSideLine > blockLeftSideLine
             && self.player.leftSideLine < blockRightSideLine
             && self.player.topSideLine < blockTopSideLine
             && self.player.bottomSideLine > blockTopSideLine) {
-            //console.log('BOTTOM');
+            
             self.player.winCollision = true;
         } 
 
@@ -164,7 +162,6 @@ World.prototype._waypointCollision = function () {
 World.prototype._createBlocks = function () {
     var self = this;
 
-    //posit_X, posit_Y, width, height, ctx, type
     var randomBlock;
     var blockNum = 70;
     var startX;
@@ -184,41 +181,24 @@ World.prototype._createBlocks = function () {
 
 World.prototype._createWaypoints = function () {
     var self = this;
-    var darkBlue = '#5594cc';
-    var yellow = '#efefa7';
-    var lightBlue = '#1bcef7';
-    var red = '#ef7958';
-    var magenta = '#b48cce';
-    var white = '#fffff4';
 
-    var yAdjust = 25;
-    
-    var line1 = 70;
-    var line2 = 170;
-    var line3 = 270;
-    var line4 = 370;
-    var line5 = 470;
-
-    // startX, startY, 10, 10, self.ctx, 'solid', randColor
-    var winWaypoint = new Waypoint(800, 100, 50, 50, self.ctx, 'waypoint', 'yellow');
+    var winWaypoint = new Waypoint(800, 100, 50, 50, self.ctx, 'waypoint', 'yellow'); //Think I don't use 'waypoint' in Waypoint - look at
     self.waypoints.push(winWaypoint);
 }
 
 World.prototype._createStars = function () {
     var self = this;
 
-    //posit_X, posit_Y, width, height, ctx, type
     var randomStar;
     var blockNum = 1000;
     var startX;
     var startY;
-    var randColor;
 
     for (var i = 0; i < blockNum; i++) {
         startX = Math.random() * (980 - 20) + 20;
         startY = Math.random() * (580 - 10) + 10;
 
-        randomStar = new Star(startX, startY, 1, 1, self.ctx, 'solid', 'white');
+        randomStar = new Star(startX, startY, 1, 1, self.ctx, 'solid', 'white'); //Think I don't use 'solid' in Star - look at
         self.stars.push(randomStar);
     }
 }
