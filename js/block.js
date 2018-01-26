@@ -10,9 +10,7 @@ function Block(posit_X, posit_Y, width, height, ctx, type, color) {
     self.ctx = ctx;
     self.type = type;
     self.color = color;
-
     self.direction = null;
-
     self.sequence = Math.floor(Math.random() * Math.floor(30));
     self.startingX = posit_X;
     self.startingY = posit_Y;
@@ -22,8 +20,8 @@ function Block(posit_X, posit_Y, width, height, ctx, type, color) {
 Block.prototype.draw = function () {
     var self = this;
 
-        self.ctx.fillStyle = self.color;
-        self.ctx.fillRect(self.x, self.y, self.width, self.height);
+    self.ctx.fillStyle = self.color;
+    self.ctx.fillRect(self.x, self.y, self.width, self.height);
 }
 
 Block.prototype.update = function () {

@@ -64,7 +64,7 @@ function main () {
         //THE CONTENT
         aniContent = document.createElement('p');
         aniContent.setAttribute('class', 'display-container');
-        aniContent.innerText = 'THE ANIMATION';
+        aniContent.innerText = 'GET READY!!';
         //CONTENT INTO DOM
         gameAreaDiv.appendChild(aniContent);
         //TIMER
@@ -101,7 +101,7 @@ function main () {
         gameOverContent = document.createElement('div');
         gameOverContent.setAttribute('class', 'display-container');
         
-        playResult = document.createElement('span');
+        playResult = document.createElement('p');
         playResult.setAttribute('id', 'play-again-button');
         if (win === true) {
             playResult.innerText = 'YOU WON!';    

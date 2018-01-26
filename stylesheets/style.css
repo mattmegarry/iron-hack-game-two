@@ -18,22 +18,26 @@ ul {
 /* TYPOGRAPHY  */
 body {
     font-family: 'Lato', sans-serif;
+    color: white;
 }
 
 /* LAYOUT */
 #wrapper {
     height: 100vh;
     width: 100vw;
+    background-color: #303133;
+
+    padding-top: 40px;
 }
 
 /* COMPONENTS */
-
 
     /* Game-area */
     #display-area {
         border: 5px solid black;
         height: 610px;
         width: 1010px;
+        background-color: black;
 
         margin: 0 auto;
     }

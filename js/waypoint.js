@@ -20,22 +20,22 @@ function Waypoint(posit_X, posit_Y, width, height, ctx, type, color) {
 Waypoint.prototype.draw = function () {
     var self = this;
 
-        if (self.i <= 100 && self.grow === true) {
-            self.ctx.fillStyle = self.color;
-            self.ctx.fillRect(self.x, self.y, self.width + self.i, self.height + self.i);
-            self.i++;
-                if (self.i >= 100) {
-                    self.grow = false;
-                }
-        } 
-        else if (self.i <= 100 && self.grow === false) {
-            self.i--;
-            self.ctx.fillStyle = self.color;
-            self.ctx.fillRect(self.x, self.y, self.width + self.i, self.height + self.i);
-                if (self.i <= 1) {
-                    self.grow = true;
-                }
-        }
+    if (self.i <= 100 && self.grow === true) {
+        self.ctx.fillStyle = self.color;
+        self.ctx.fillRect(self.x, self.y, self.width + self.i, self.height + self.i);
+        self.i++;
+            if (self.i >= 100) {
+                self.grow = false;
+            }
+    } 
+    else if (self.i <= 100 && self.grow === false) {
+        self.i--;
+        self.ctx.fillStyle = self.color;
+        self.ctx.fillRect(self.x, self.y, self.width + self.i, self.height + self.i);
+            if (self.i <= 1) {
+                self.grow = true;
+            }
+    }
     
 }
 
