@@ -1,10 +1,7 @@
 'use strict';
 
 function main () {
-    //CONSTANTS GO HERE
-
     var _ANITIME = 1000;
-    var _GAMETIME = 2000;
     
     // INTER-STAGE VARIABLES
     
@@ -39,8 +36,6 @@ function main () {
     var splashStartButton;
 
     function buildSplash () {
-        //SET DISPLAY STAGE
-        displayStage = 'splash';
         //THE CONTENT
         splashContent = document.createElement('div');
         splashContent.setAttribute('class', 'display-container');
@@ -65,9 +60,7 @@ function main () {
     var aniContent;
     var aniTimeOutId;
 
-    function buildAni () {//could take params for more control
-        //SET DISPLAY STAGE
-        displayStage = 'ani';
+    function buildAni () {
         //THE CONTENT
         aniContent = document.createElement('p');
         aniContent.setAttribute('class', 'display-container');
@@ -83,15 +76,11 @@ function main () {
         window.clearTimeout(aniTimeOutId);
     }
 
-    // --- THE GAME --- 
-    
-    var gameTimeOutId;
+    // --- THE GAME ---
     var gameContent;
     var game;
     
-    function buildGame () {//could take params for more control
-        //SET DISPLAY STAGE
-        displayStage = 'game';
+    function buildGame () {
         game = new Game(gameAreaDiv);
         game.onGameOver(gameToGameOverBridge);
 
@@ -108,8 +97,6 @@ function main () {
     var playResult;
 
     function buildGameOver (win) {
-        //SET DISPLAY STAGE
-        displayStage = 'gameover';
         //THE CONTENT
         gameOverContent = document.createElement('div');
         gameOverContent.setAttribute('class', 'display-container');
